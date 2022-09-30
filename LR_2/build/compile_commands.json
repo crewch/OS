@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/crewch/git/OS/LR_2/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/main.dir/src/main.cpp.o -c /home/crewch/git/OS/LR_2/src/main.cpp",
+  "file": "/home/crewch/git/OS/LR_2/src/main.cpp"
+},
+{
+  "directory": "/home/crewch/git/OS/LR_2/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/child.dir/src/child.cpp.o -c /home/crewch/git/OS/LR_2/src/child.cpp",
+  "file": "/home/crewch/git/OS/LR_2/src/child.cpp"
+}
+]

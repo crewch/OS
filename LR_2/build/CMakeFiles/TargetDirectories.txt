@@ -1,0 +1,4 @@
+/home/crewch/git/OS/LR_2/build/CMakeFiles/main.dir
+/home/crewch/git/OS/LR_2/build/CMakeFiles/child.dir
+/home/crewch/git/OS/LR_2/build/CMakeFiles/edit_cache.dir
+/home/crewch/git/OS/LR_2/build/CMakeFiles/rebuild_cache.dir
