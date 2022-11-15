@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/crewch/git/OS/LR_4/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/main.dir/src/main.cpp.o -c /home/crewch/git/OS/LR_4/src/main.cpp",
+  "file": "/home/crewch/git/OS/LR_4/src/main.cpp"
+}
+]

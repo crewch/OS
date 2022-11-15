@@ -124,6 +124,7 @@ int main(int argc, char** argv)
         i++;
     }
 
+
     if (maxCountThreads > 1) {
         qsort(array, maxCountElements);
     }
