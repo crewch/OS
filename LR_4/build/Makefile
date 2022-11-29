@@ -129,6 +129,43 @@ main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+#=============================================================================
+# Target rules for targets named child
+
+# Build rule for target.
+child: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 child
+.PHONY : child
+
+# fast build rule for target.
+child/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/child.dir/build.make CMakeFiles/child.dir/build
+.PHONY : child/fast
+
+src/child.o: src/child.cpp.o
+.PHONY : src/child.o
+
+# target to build an object file
+src/child.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/child.dir/build.make CMakeFiles/child.dir/src/child.cpp.o
+.PHONY : src/child.cpp.o
+
+src/child.i: src/child.cpp.i
+.PHONY : src/child.i
+
+# target to preprocess a source file
+src/child.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/child.dir/build.make CMakeFiles/child.dir/src/child.cpp.i
+.PHONY : src/child.cpp.i
+
+src/child.s: src/child.cpp.s
+.PHONY : src/child.s
+
+# target to generate assembly for a file
+src/child.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/child.dir/build.make CMakeFiles/child.dir/src/child.cpp.s
+.PHONY : src/child.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -161,7 +198,11 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... child"
 	@echo "... main"
+	@echo "... src/child.o"
+	@echo "... src/child.i"
+	@echo "... src/child.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

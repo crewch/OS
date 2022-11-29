@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
   "/home/crewch/git/OS/LR_4/CMakeLists.txt"
-  "CMakeFiles/3.24.2/CMakeCXXCompiler.cmake"
-  "CMakeFiles/3.24.2/CMakeSystem.cmake"
+  "CMakeFiles/3.24.3/CMakeCXXCompiler.cmake"
+  "CMakeFiles/3.24.3/CMakeSystem.cmake"
   "/usr/share/cmake/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake/Modules/CMakeCommonLanguageInclude.cmake"
   "/usr/share/cmake/Modules/CMakeGenericSystem.cmake"
@@ -40,4 +40,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/main.dir/DependInfo.cmake"
+  "CMakeFiles/child.dir/DependInfo.cmake"
   )
