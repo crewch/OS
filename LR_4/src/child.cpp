@@ -16,20 +16,6 @@ int main(int argc, char** argv)
         _exit(EXIT_FAILURE);
     }
     
-    sem_t* semptr = sem_open(SemaphoreName, O_CREAT, mode, 1);
-    if (semptr == SEM_FAILED) {
-        _exit(EXIT_FAILURE);
-    }
-
-    /*
-    Функция sem_wait() уменьшает (блокирует) семафор, на который указывает sem.
-    Если значение семафор больше нуля, то выполняется уменьшение и функция сразу завершается.
-    */
-
-    if (sem_wait(semptr) != 0) {
-        _exit(EXIT_FAILURE);
-    }
-    
     char* out = (char*)malloc(sizeof(char));
     size_t m_size = 0;
     string first;
@@ -76,7 +62,5 @@ int main(int argc, char** argv)
     sprintf(memptr, "%s", out);
     free(out);
     close(map_fd);
-    sem_post(semptr);
-    sem_close(semptr);
     return 0;
 }

@@ -1,0 +1,7 @@
+#ifndef _VERSION_H_
+#define _VERSION_H_
+
+const char *prnt = "${LIB_PRINT_TYPE}";
+const char *g_version = "@CMAKE_SYSTEM_VERSION@";
+
+#endif

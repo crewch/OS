@@ -19,6 +19,3 @@ target_link_libraries(main1 PRIVATE lib1 m)
 add_executable(main2 ./src/main1.cpp)
 target_include_directories(main2 PRIVATE ./include)
 target_link_libraries(main2 PRIVATE lib2 m)
-
-add_executable(main ./src/main2.cpp)
-# target_include_directories(main PRIVATE ./include m)
