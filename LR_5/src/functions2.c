@@ -1,8 +1,4 @@
-#include <bits/stdc++.h>
-
-#include "../include/lib.h"
-
-using namespace std;
+#include <stdlib.h>
 
 int fact(int x)
 {
@@ -19,7 +15,7 @@ float E(int x)
     float sum = 0;
 
     for (int i = 0; i <= x; i++) {
-        sum += (1 / float(fact(i)));
+        sum += (1 / (float)fact(i));
     }
     
     return sum;
@@ -29,7 +25,7 @@ int GCF(int A, int B)
 {
     A = abs(A);
     B = abs(B);
-    int min_num = min(A, B);
+    int min_num = (A < B) ? A : B;
 
     for (int i = min_num; i > 0; i--) {
         if (A % i == 0 && B % i == 0) {

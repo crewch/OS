@@ -1,8 +1,4 @@
-#include <bits/stdc++.h>
-
-#include "../include/lib.h"
-
-using namespace std;
+#include <stdlib.h>
 
 int fact(int x)
 {
@@ -14,9 +10,16 @@ int fact(int x)
     return res;
 }
 
+float power(float base, int exp) {
+    float result = 1;
+    for (int i = 0; i < exp; i++)
+        result *= base;
+    return result;
+}
+
 float E(int x)
 {
-    return pow(1 + 1 / float(x), x);
+    return power(1 + 1 / (float)x, x);
 }
 
 int GCF(int A, int B)

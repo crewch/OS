@@ -1,21 +1,25 @@
-cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
-project(main LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.8)
 
-add_library(
-        lib1 SHARED
-        ./include/lib.h
-        ./src/lib1.cpp
-)
-add_library(
-        lib2 SHARED
-        ./include/lib.h
-        ./src/lib2.cpp
-)
+project(lab5)
+include_directories(include)
 
-add_executable(main1 ./src/main1.cpp)
-target_include_directories(main1 PRIVATE ./include)
-target_link_libraries(main1 PRIVATE lib1 m)
+add_library(lib1 SHARED src/functions1.c)
+add_library(lib2 SHARED src/functions2.c)
 
-add_executable(main2 ./src/main1.cpp)
-target_include_directories(main2 PRIVATE ./include)
-target_link_libraries(main2 PRIVATE lib2 m)
+add_executable(test11 src/test1.c include/functions.h)
+add_executable(test12 src/test1.c include/functions.h)
+target_link_libraries(test11 lib1)
+target_link_libraries(test12 lib2)
+
+if (NOT (DEFINED LIB_PRINT_TYPE))
+	set(LIB_PRINT_TYPE DEFAULT)
+endif ()
+
+if (LIB_PRINT_TYPE STREQUAL EXTENDED)
+	add_compile_definitions(SYSTEM="${CMAKE_SYSTEM}")
+elseif (NOT (LIB_PRINT_TYPE STREQUAL DEFAULT))
+	message(FATAL_ERROR "Unexpected LIB_PRINT_TYPE: ${LIB_PRINT_TYPE}")
+endif ()
+
+add_executable(test2 src/test2.c)
+target_link_libraries(test2 ${CMAKE_DL_LIBS})
