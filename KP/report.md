@@ -9,6 +9,9 @@
 
 ### Вариант 23
 
+![Screenshot_20221219_204426](https://user-images.githubusercontent.com/86799725/208487508-8642a9f1-f325-429f-b7cc-2d40b118594e.png)
+![Screenshot_20221219_204051](https://user-images.githubusercontent.com/86799725/208487045-d6e9d293-1545-49e6-a076-008f5ff37174.png)
+
 ## Методы и алгоритмы решения
 
 ```c
