@@ -1,2 +1,4 @@
+/home/crewch/git/OS/LR_6-8/build/CMakeFiles/main.dir
+/home/crewch/git/OS/LR_6-8/build/CMakeFiles/node.dir
 /home/crewch/git/OS/LR_6-8/build/CMakeFiles/edit_cache.dir
 /home/crewch/git/OS/LR_6-8/build/CMakeFiles/rebuild_cache.dir
