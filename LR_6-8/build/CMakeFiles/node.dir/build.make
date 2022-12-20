@@ -69,28 +69,28 @@ include CMakeFiles/node.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/node.dir/flags.make
 
-CMakeFiles/node.dir/LROC6/node.cpp.o: CMakeFiles/node.dir/flags.make
-CMakeFiles/node.dir/LROC6/node.cpp.o: /home/crewch/git/OS/LR_6-8/LROC6/node.cpp
-CMakeFiles/node.dir/LROC6/node.cpp.o: CMakeFiles/node.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/crewch/git/OS/LR_6-8/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/node.dir/LROC6/node.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/node.dir/LROC6/node.cpp.o -MF CMakeFiles/node.dir/LROC6/node.cpp.o.d -o CMakeFiles/node.dir/LROC6/node.cpp.o -c /home/crewch/git/OS/LR_6-8/LROC6/node.cpp
+CMakeFiles/node.dir/src/node.cpp.o: CMakeFiles/node.dir/flags.make
+CMakeFiles/node.dir/src/node.cpp.o: /home/crewch/git/OS/LR_6-8/src/node.cpp
+CMakeFiles/node.dir/src/node.cpp.o: CMakeFiles/node.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/crewch/git/OS/LR_6-8/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/node.dir/src/node.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/node.dir/src/node.cpp.o -MF CMakeFiles/node.dir/src/node.cpp.o.d -o CMakeFiles/node.dir/src/node.cpp.o -c /home/crewch/git/OS/LR_6-8/src/node.cpp
 
-CMakeFiles/node.dir/LROC6/node.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/node.dir/LROC6/node.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/crewch/git/OS/LR_6-8/LROC6/node.cpp > CMakeFiles/node.dir/LROC6/node.cpp.i
+CMakeFiles/node.dir/src/node.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/node.dir/src/node.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/crewch/git/OS/LR_6-8/src/node.cpp > CMakeFiles/node.dir/src/node.cpp.i
 
-CMakeFiles/node.dir/LROC6/node.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/node.dir/LROC6/node.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/crewch/git/OS/LR_6-8/LROC6/node.cpp -o CMakeFiles/node.dir/LROC6/node.cpp.s
+CMakeFiles/node.dir/src/node.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/node.dir/src/node.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/crewch/git/OS/LR_6-8/src/node.cpp -o CMakeFiles/node.dir/src/node.cpp.s
 
 # Object files for target node
 node_OBJECTS = \
-"CMakeFiles/node.dir/LROC6/node.cpp.o"
+"CMakeFiles/node.dir/src/node.cpp.o"
 
 # External object files for target node
 node_EXTERNAL_OBJECTS =
 
-node: CMakeFiles/node.dir/LROC6/node.cpp.o
+node: CMakeFiles/node.dir/src/node.cpp.o
 node: CMakeFiles/node.dir/build.make
 node: CMakeFiles/node.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/crewch/git/OS/LR_6-8/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable node"

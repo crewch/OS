@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/node.dir/LROC6/node.cpp.o -o node 
+/usr/bin/g++ -g -rdynamic CMakeFiles/node.dir/src/node.cpp.o -o node 

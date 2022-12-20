@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/crewch/git/OS/LR_6-8/LROC6/main.cpp" "CMakeFiles/main.dir/LROC6/main.cpp.o" "gcc" "CMakeFiles/main.dir/LROC6/main.cpp.o.d"
+  "/home/crewch/git/OS/LR_6-8/src/main.cpp" "CMakeFiles/main.dir/src/main.cpp.o" "gcc" "CMakeFiles/main.dir/src/main.cpp.o.d"
   )
 
 # Targets to which this target links.
