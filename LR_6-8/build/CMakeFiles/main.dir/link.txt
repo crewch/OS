@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/main.dir/main.cpp.o -o main 
+/usr/bin/g++ -g -rdynamic CMakeFiles/main.dir/LROC6/main.cpp.o -o main 

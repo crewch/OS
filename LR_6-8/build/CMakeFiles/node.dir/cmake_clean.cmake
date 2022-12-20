@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/node.dir/node.cpp.o"
-  "CMakeFiles/node.dir/node.cpp.o.d"
+  "CMakeFiles/node.dir/LROC6/node.cpp.o"
+  "CMakeFiles/node.dir/LROC6/node.cpp.o.d"
   "node"
   "node.pdb"
 )

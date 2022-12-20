@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/crewch/git/OS/LR_6-8/node.cpp" "CMakeFiles/node.dir/node.cpp.o" "gcc" "CMakeFiles/node.dir/node.cpp.o.d"
+  "/home/crewch/git/OS/LR_6-8/LROC6/node.cpp" "CMakeFiles/node.dir/LROC6/node.cpp.o" "gcc" "CMakeFiles/node.dir/LROC6/node.cpp.o.d"
   )
 
 # Targets to which this target links.

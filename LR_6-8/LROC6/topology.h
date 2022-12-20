@@ -3,17 +3,16 @@
 #include <list>
 #include <stdexcept>
 
-
 #include <list>
 #include <stdexcept>
-
 
 class Topology {
 private:
     std::list<std::list<int>> container;
 
 public:
-    void Insert(int id, int parent_id) {
+    void Insert(int id, int parent_id)
+    {
         if (parent_id == -1) {
             std::list<int> new_list;
             new_list.push_back(id);
@@ -35,8 +34,8 @@ public:
         }
     }
 
-
-    int Find(int id) {
+    int Find(int id)
+    {
         int cur_list_id = 0;
         for (auto it1 = container.begin(); it1 != container.end(); ++it1) {
             for (auto it2 = it1->begin(); it2 != it1->end(); ++it2) {
@@ -49,7 +48,8 @@ public:
         return -1;
     }
 
-    void Erase(int id) {
+    void Erase(int id)
+    {
         int list_id = Find(id);
         if (list_id == -1) {
             throw std::runtime_error("Wrong id");
@@ -67,7 +67,8 @@ public:
         }
     }
 
-    int GetFirstId(int list_id) {
+    int GetFirstId(int list_id)
+    {
         auto it1 = container.begin();
         std::advance(it1, list_id);
         if (it1->begin() == it1->end()) {

@@ -142,53 +142,53 @@ node/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/node.dir/build.make CMakeFiles/node.dir/build
 .PHONY : node/fast
 
-main.o: main.cpp.o
-.PHONY : main.o
+LROC6/main.o: LROC6/main.cpp.o
+.PHONY : LROC6/main.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.o
-.PHONY : main.cpp.o
+LROC6/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/LROC6/main.cpp.o
+.PHONY : LROC6/main.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+LROC6/main.i: LROC6/main.cpp.i
+.PHONY : LROC6/main.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.i
-.PHONY : main.cpp.i
+LROC6/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/LROC6/main.cpp.i
+.PHONY : LROC6/main.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+LROC6/main.s: LROC6/main.cpp.s
+.PHONY : LROC6/main.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
-.PHONY : main.cpp.s
+LROC6/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/LROC6/main.cpp.s
+.PHONY : LROC6/main.cpp.s
 
-node.o: node.cpp.o
-.PHONY : node.o
+LROC6/node.o: LROC6/node.cpp.o
+.PHONY : LROC6/node.o
 
 # target to build an object file
-node.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/node.dir/build.make CMakeFiles/node.dir/node.cpp.o
-.PHONY : node.cpp.o
+LROC6/node.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/node.dir/build.make CMakeFiles/node.dir/LROC6/node.cpp.o
+.PHONY : LROC6/node.cpp.o
 
-node.i: node.cpp.i
-.PHONY : node.i
+LROC6/node.i: LROC6/node.cpp.i
+.PHONY : LROC6/node.i
 
 # target to preprocess a source file
-node.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/node.dir/build.make CMakeFiles/node.dir/node.cpp.i
-.PHONY : node.cpp.i
+LROC6/node.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/node.dir/build.make CMakeFiles/node.dir/LROC6/node.cpp.i
+.PHONY : LROC6/node.cpp.i
 
-node.s: node.cpp.s
-.PHONY : node.s
+LROC6/node.s: LROC6/node.cpp.s
+.PHONY : LROC6/node.s
 
 # target to generate assembly for a file
-node.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/node.dir/build.make CMakeFiles/node.dir/node.cpp.s
-.PHONY : node.cpp.s
+LROC6/node.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/node.dir/build.make CMakeFiles/node.dir/LROC6/node.cpp.s
+.PHONY : LROC6/node.cpp.s
 
 # Help Target
 help:
@@ -200,12 +200,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... main"
 	@echo "... node"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
-	@echo "... node.o"
-	@echo "... node.i"
-	@echo "... node.s"
+	@echo "... LROC6/main.o"
+	@echo "... LROC6/main.i"
+	@echo "... LROC6/main.s"
+	@echo "... LROC6/node.o"
+	@echo "... LROC6/node.i"
+	@echo "... LROC6/node.s"
 .PHONY : help
 
 

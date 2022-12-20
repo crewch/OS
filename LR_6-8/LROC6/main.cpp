@@ -1,12 +1,13 @@
-#include <iostream>
 #include <unistd.h>
-#include <zmq.hpp>
+#include <iostream>
 #include <vector>
+#include <zmq.hpp>
 
 #include "topology.h"
 #include "zmq_f.h"
 
-int main() {
+int main()
+{
     Topology network;
     std::vector<zmq::socket_t> branches;
     zmq::context_t context;
@@ -18,10 +19,11 @@ int main() {
             int node_id, parent_id;
             std::cin >> node_id >> parent_id;
 
-            if (network.Find(node_id) != -1) { // Поиск id выч. узла среди существующих
+            if (network.Find(node_id) != -1) {  // Поиск id выч. узла среди существующих
                 std::cout << "Error: already exists!\n";
-            } else if (parent_id == -1) {
-                pid_t pid = fork(); // Создание дочернего узла
+            }
+            else if (parent_id == -1) {
+                pid_t pid = fork();  // Создание дочернего узла
                 if (pid < 0) {
                     perror("Can't create new process!\n");
                     exit(EXIT_FAILURE);
@@ -36,13 +38,14 @@ int main() {
                 bind(branches[branches.size() - 1], node_id);
                 send_message(branches[branches.size() - 1], std::to_string(node_id) + "pid");
 
-                std::string reply = receive_message(branches[branches.size() -  1]);
+                std::string reply = receive_message(branches[branches.size() - 1]);
                 std::cout << reply << "\n";
                 network.Insert(node_id, parent_id);
-
-            } else if (network.Find(parent_id) == -1) {
+            }
+            else if (network.Find(parent_id) == -1) {
                 std::cout << "Error: parent not found!\n";
-            } else {
+            }
+            else {
                 int branch = network.Find(parent_id);
                 send_message(branches[branch], std::to_string(parent_id) + "create " + std::to_string(node_id));
 
@@ -51,13 +54,15 @@ int main() {
 
                 network.Insert(node_id, parent_id);
             }
-        } else if (command == "remove") {
+        }
+        else if (command == "remove") {
             int id;
             std::cin >> id;
             int branch = network.Find(id);
             if (branch == -1) {
                 std::cout << "Error: incorrect node id!\n";
-            } else {
+            }
+            else {
                 bool is_first = (network.GetFirstId(branch) == id);
                 send_message(branches[branch], std::to_string(id) + " remove");
 
@@ -69,7 +74,8 @@ int main() {
                     branches.erase(std::next(branches.begin(), branch));
                 }
             }
-        } else if (command == "exec") {
+        }
+        else if (command == "exec") {
             int dest_id;
             std::string text_string;
             std::string pattern;
@@ -77,15 +83,16 @@ int main() {
             int branch = network.Find(dest_id);
             if (branch == -1) {
                 std::cout << "Error: incorrect node id!\n";
-            } else {
-                send_message(branches[branch], std::to_string(dest_id)  + "exec " + text_string + " " + pattern);
+            }
+            else {
+                send_message(branches[branch], std::to_string(dest_id) + "exec " + text_string + " " + pattern);
                 std::string reply = receive_message(branches[branch]);
                 std::cout << reply << "\n";
             }
         }
-        else if(command == "heartbeat"){
+        else if (command == "heartbeat") {
             int TIME;
-            std::cin>>TIME;
+            std::cin >> TIME;
             for (int i = 0; i < branches.size(); ++i) {
                 send_message(branches[i], std::to_string(i) + " heartbeat " + std::to_string(TIME));
                 std::cout << receive_message(branches[i]) << "\n";
@@ -98,12 +105,14 @@ int main() {
                 std::string reply = receive_message(branches[i]);
                 if (reply != "OK") {
                     std::cout << reply << "\n";
-                } else {
+                }
+                else {
                     unbind(branches[i], first_node_id);
                 }
             }
             exit(0);
-        } else {
+        }
+        else {
             std::cout << "Incorrect command >" << command << "<!\n";
         }
     }

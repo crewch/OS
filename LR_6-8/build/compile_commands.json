@@ -1,12 +1,12 @@
 [
 {
   "directory": "/home/crewch/git/OS/LR_6-8/build",
-  "command": "/usr/bin/g++   -g -o CMakeFiles/main.dir/main.cpp.o -c /home/crewch/git/OS/LR_6-8/main.cpp",
-  "file": "/home/crewch/git/OS/LR_6-8/main.cpp"
+  "command": "/usr/bin/g++   -g -o CMakeFiles/main.dir/LROC6/main.cpp.o -c /home/crewch/git/OS/LR_6-8/LROC6/main.cpp",
+  "file": "/home/crewch/git/OS/LR_6-8/LROC6/main.cpp"
 },
 {
   "directory": "/home/crewch/git/OS/LR_6-8/build",
-  "command": "/usr/bin/g++   -g -o CMakeFiles/node.dir/node.cpp.o -c /home/crewch/git/OS/LR_6-8/node.cpp",
-  "file": "/home/crewch/git/OS/LR_6-8/node.cpp"
+  "command": "/usr/bin/g++   -g -o CMakeFiles/node.dir/LROC6/node.cpp.o -c /home/crewch/git/OS/LR_6-8/LROC6/node.cpp",
+  "file": "/home/crewch/git/OS/LR_6-8/LROC6/node.cpp"
 }
 ]
