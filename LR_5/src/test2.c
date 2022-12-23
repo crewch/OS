@@ -28,7 +28,9 @@ int main()
     CHECK_ERROR(handle = dlopen(names[n], RTLD_LAZY), "dlopen error");
     CHECK_ERROR(E = dlsym(handle, "E"), "dlsym error (E)");
     CHECK_ERROR(GCF = dlsym(handle, "GCF"), "dlsym error (GCF)");
-
+ // dlopen загружает динамическую библиотеку, имя которой указано в строке filename, и возвращает прямой указатель на начало динамической библиотеки
+// RTLD_LAZY подразумевающим разрешение неопределенных символов в виде кода
+// dlsym использует указатель на динамическую библиотеку, возвращаемую dlopen, и оканчивающееся нулем символьное имя, а затем возвращает адрес, указывающий, откуда загружается этот символ.
     while (1) {
         int t;
         scanf("%d", &t);
@@ -59,8 +61,10 @@ int main()
             PRINT_OS;
             printf("E: %f\n", (*E)(x));
         }
-        
+
         if (t == -1)
             break;
     }
+
+    return 0;
 }

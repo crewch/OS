@@ -26,4 +26,6 @@ int main()
         } else if (target == -1)
             break;
     }
+    
+    return 0;
 }
