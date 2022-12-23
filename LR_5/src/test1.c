@@ -17,13 +17,11 @@ int main()
             int a, b;
             scanf("%d %d", &a, &b);
             PRINT_OS;
-
             printf("GCF: %d\n", GCF(a, b));
         } else if (target == 2) {
             int x;
             scanf("%d", &x);
             PRINT_OS;
-            
             printf("E: %f\n", E(x));
         } else if (target == -1)
             break;
