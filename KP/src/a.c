@@ -58,7 +58,7 @@ int main()
                     perror("Could not execve in program 'a'\n");
                 }
             } else if (pid_1 > 0) {
-                sem_wait(sem3);
+                sem_wait(sem3); // блокирует семафор
 
                 if (execve("./c.out", argv, NULL) == -1) {
                     perror("Could not execve in program 'a'\n");
@@ -66,8 +66,8 @@ int main()
             }
         } else if (pid > 0) {
             sprintf(shmem, "%s", tmp);
-            sem_post(sem1);
-            sem_wait(sem2);
+            sem_post(sem1); // разблокирует семафор
+            sem_wait(sem2); // блокирует семафор
             printf("	\n\n");
         }
     }

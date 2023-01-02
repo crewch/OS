@@ -36,5 +36,5 @@ int main(int argc, char const* argv[])
     int size = strlen(shmem);
 
     printf("%d symbols\n", size);
-    sem_post(sem3);
+    sem_post(sem3); // разблокирует семафор
 }

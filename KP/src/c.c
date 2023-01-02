@@ -45,9 +45,9 @@ int main(int argc, char* const argv[])
             exit(1);
         }
     } else if (p > 0) {
-        sem_wait(sem3);
+        sem_wait(sem3); // блокирует семафор
         printf("%s\n", shmem);
     }
     
-    sem_post(sem2);
+    sem_post(sem2); // разблокирует семафор
 }
