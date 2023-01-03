@@ -11,15 +11,15 @@ void send_message(zmq::socket_t& socket, const std::string& msg)
 {
     zmq::message_t message(msg.size());
     memcpy(message.data(), msg.c_str(), msg.size());  // копирует size байтов из msg.c_str() в message.data()
-    socket.send(message);                             // возврат результата отсылает очередь сообщений созданных в message
+    socket.send(message, zmq::send_flags::dontwait);                             // возврат результата отсылает очередь сообщений созданных в message
 }
 
 std::string receive_message(zmq::socket_t& socket)
 {
     zmq::message_t message;
-    int chars_read;
+    zmq::recv_result_t chars_read;
     try {
-        chars_read = (int)socket.recv(&message);  // получение сообщений
+        chars_read = socket.recv(message);  // получение сообщений
     }
     catch (...) {
         chars_read = 0;
