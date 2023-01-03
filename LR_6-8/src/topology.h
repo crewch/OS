@@ -1,7 +1,5 @@
 #ifndef LAB6_8_TOPOLOGY_H
 #define LAB6_8_TOPOLOGY_H
-#include <list>
-#include <stdexcept>
 
 #include <list>
 #include <stdexcept>

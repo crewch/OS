@@ -1,5 +1,6 @@
 #ifndef LAB6_8_ZMQ_FUNCTIONS_H
 #define LAB6_8_ZMQ_FUNCTIONS_H
+
 #include <iostream>
 #include <string>
 #include <zmq.hpp>

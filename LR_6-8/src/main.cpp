@@ -14,6 +14,7 @@ int main()
     std::string command;
     zmq::socket_t main_socket(context, ZMQ_REP);
     std::string message;
+    
     while (std::cin >> command) {
         if (command == "create") {
             int node_id, parent_id;
