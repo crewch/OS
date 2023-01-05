@@ -9,6 +9,9 @@
 
 ### Вариант 12 1 4 2
 
+![Screenshot_20230105_132814](https://user-images.githubusercontent.com/86799725/210758871-810b3420-ef77-4a22-800d-2451d6981975.png)
+![Screenshot_20230105_132851](https://user-images.githubusercontent.com/86799725/210758967-15930424-1555-45f3-8b37-9bbc131a6926.png)
+![Screenshot_20230105_132918](https://user-images.githubusercontent.com/86799725/210759061-f0dce2a1-cb3d-4672-8d4b-4188361d3d09.png)
 
 
 ## Методы и алгоритмы решения
