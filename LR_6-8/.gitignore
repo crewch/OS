@@ -1,1 +1,3 @@
 *.o
+src/control
+src/calculation
