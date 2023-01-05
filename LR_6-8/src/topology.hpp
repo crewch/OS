@@ -26,10 +26,10 @@ public:
                 if (*it2 == elem) {
                     if (it1->size() > 1) {
                         it1->erase(it2);
-                    }
-                    else {
+                    } else {
                         container.erase(it1);
                     }
+
                     --container_size;
                     return true;
                 }
@@ -93,4 +93,4 @@ public:
     }
 };
 
-#endif /* TOPOLOGY_HPP */
+#endif

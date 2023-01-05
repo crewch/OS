@@ -4,11 +4,14 @@ std::vector<unsigned int> PrefixFunction(const std::string& s)
 {
     unsigned int n = s.size();
     std::vector<unsigned int> p(n);
+
     for (unsigned int i = 1; i < n; ++i) {
         p[i] = p[i - 1];
+
         while (p[i] > 0 and s[i] != s[p[i]]) {
             p[i] = p[p[i] - 1];
         }
+
         if (s[i] == s[p[i]]) {
             ++p[i];
         }
@@ -23,18 +26,21 @@ std::vector<unsigned int> KMPWeak(const std::string& pattern, const std::string&
     unsigned int n = text.size();
     unsigned int i = 0;
     std::vector<unsigned int> ans;
+
     if (m > n) {
         return ans;
     }
+
     while (i < n - m + 1) {
         unsigned int j = 0;
+
         while (j < m and pattern[j] == text[i + j]) {
             ++j;
         }
+
         if (j == m) {
             ans.push_back(i);
-        }
-        else {
+        } else {
             if (j > 0 and j > p[j - 1]) {
                 i = i + j - p[j - 1] - 1;
             }
@@ -49,13 +55,16 @@ std::vector<unsigned int> ZFunction(const std::string& s)
     unsigned int n = s.size();
     std::vector<unsigned int> z(n);
     unsigned int l = 0, r = 0;
+
     for (unsigned int i = 1; i < n; ++i) {
         if (i <= r) {
             z[i] = std::min(z[i - l], r - i);
         }
+
         while (i + z[i] < n and s[i + z[i]] == s[z[i]]) {
             ++z[i];
         }
+
         if (i + z[i] > r) {
             l = i;
             r = i + z[i];
@@ -69,9 +78,11 @@ std::vector<unsigned int> StrongPrefixFunction(const std::string& s)
     std::vector<unsigned int> z = ZFunction(s);
     unsigned int n = s.size();
     std::vector<unsigned int> sp(n);
+
     for (unsigned int i = n - 1; i > 0; --i) {
         sp[i + z[i] - 1] = z[i];
     }
+	
     return sp;
 }
 
@@ -82,18 +93,21 @@ std::vector<unsigned int> KMPStrong(const std::string& pattern, const std::strin
     unsigned int n = text.size();
     unsigned int i = 0;
     std::vector<unsigned int> ans;
+
     if (m > n) {
         return ans;
     }
+
     while (i < n - m + 1) {
         unsigned int j = 0;
+
         while (j < m and pattern[j] == text[i + j]) {
             ++j;
         }
+
         if (j == m) {
             ans.push_back(i);
-        }
-        else {
+        } else {
             if (j > 0 and j > p[j - 1]) {
                 i = i + j - p[j - 1] - 1;
             }

@@ -79,10 +79,12 @@ namespace zmq_std {
         rc = zmq_msg_init_data(&message, token, sizeof(T), NULL, NULL);
         assert(rc == 0);
         rc = zmq_msg_send(&message, socket, ZMQ_DONTWAIT);
+
         if (rc == -1) {
             zmq_msg_close(&message);
             return false;
         }
+
         assert(rc == sizeof(T));
         return true;
     }
@@ -94,10 +96,12 @@ namespace zmq_std {
         zmq_msg_t reply;
         zmq_msg_init(&reply);
         rc = zmq_msg_recv(&reply, socket, 0);
+
         if (rc == -1) {
             zmq_msg_close(&reply);
             return false;
         }
+
         assert(rc == sizeof(T));
         reply_data = *(T*)zmq_msg_data(&reply);
         rc = zmq_msg_close(&reply);
@@ -105,7 +109,7 @@ namespace zmq_std {
         return true;
     }
 
-    /* Returns true if T was successfully queued on the socket */
+    // Возвращает значение true, если T был успешно помещен в очередь сокета
     template <class T>
     bool send_msg_wait(T* token, void* socket)
     {
@@ -117,30 +121,27 @@ namespace zmq_std {
         rc = zmq_msg_init_data(&message, token, sizeof(T), NULL, NULL);
         assert(rc == 0);
         rc = zmq_msg_send(&message, socket, 0);
+
         if (rc == -1) {
             zmq_msg_close(&message);
             return false;
         }
+
         assert(rc == sizeof(T));
         return true;
     }
 
-    /*
-     * Returns true if socket successfully queued
-     * message and recieved reply
-     */
+    // Возвращает значение true, если сокет успешно поставил сообщение в очередь и получил ответ
     template <class T>
     bool send_recieve_wait(T* token_send, T& token_reply, void* socket)
     {
         if (send_msg_wait(token_send, socket)) {
             if (recieve_msg_wait(token_reply, socket)) {
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
-        }
-        else {
+        } else {
             return false;
         }
     }

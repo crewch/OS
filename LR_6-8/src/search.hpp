@@ -11,4 +11,4 @@ std::vector<unsigned int> ZFunction(const std::string& s);
 std::vector<unsigned int> StrongPrefixFunction(const std::string& s);
 std::vector<unsigned int> KMPStrong(const std::string& pattern, const std::string& text);
 
-#endif /* SEARCH_HPP */
+#endif

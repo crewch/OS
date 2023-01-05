@@ -19,21 +19,25 @@ void* thread_func(void*)
 {
     while (1) {
         pthread_mutex_lock(&mutex);
+
         while (calc_queue.empty()) {
             pthread_cond_wait(&cond, &mutex);
         }
+
         std::pair<std::string, std::string> cur = calc_queue.front();
         calc_queue.pop();
         pthread_mutex_unlock(&mutex);
+
         if (cur.first == SENTINEL_STR and cur.second == SENTINEL_STR) {
             break;
-        }
-        else {
+        } else {
             std::vector<unsigned int> res = KMPStrong(cur.first, cur.second);
             std::list<unsigned int> res_list;
+
             for (const unsigned int& elem : res) {
                 res_list.push_back(elem);
             }
+
             pthread_mutex_lock(&mutex);
             done_queue.push(res_list);
             pthread_mutex_unlock(&mutex);
@@ -76,6 +80,7 @@ int main(int argc, char** argv)
     bool has_child = false;
     bool awake = true;
     bool calc = true;
+
     while (awake) {
         node_token_t token;
         zmq_std::recieve_msg(token, node_parent_socket);
@@ -86,44 +91,39 @@ int main(int argc, char** argv)
             if (token.id == node_id) {
                 if (calc) {
                     pthread_mutex_lock(&mutex);
+
                     if (done_queue.empty()) {
                         reply->action = exec;
-                    }
-                    else {
+                    } else {
                         cur_calculated = done_queue.front();
                         done_queue.pop();
                         reply->action = success;
                         reply->id = getpid();
                     }
+
                     pthread_mutex_unlock(&mutex);
                     calc = false;
-                }
-                else {
+                } else {
                     if (cur_calculated.size() > 0) {
                         reply->action = success;
                         reply->id = cur_calculated.front();
                         cur_calculated.pop_front();
-                    }
-                    else {
+                    } else {
                         reply->action = exec;
                         calc = true;
                     }
                 }
-            }
-            else {
+            } else {
                 node_token_t* token_down = new node_token_t(token);
                 node_token_t reply_down(token);
                 reply_down.action = fail;
+
                 if (zmq_std::send_recieve_wait(token_down, reply_down, node_socket) and reply_down.action == success) {
                     *reply = reply_down;
                 }
             }
-        }
-        else if (token.action == bind and token.parent_id == node_id) {
-            /*
-             * Bind could be recieved when parent created node
-             * and this node should bind to parent's child
-             */
+        } else if (token.action == bind and token.parent_id == node_id) {
+            // Привязка может быть получена при создании родительского узла и этот узел должен привязываться к дочернему узлу родителя
             zmq_std::init_pair_socket(node_context, node_socket);
             rc = zmq_bind(node_socket, ("tcp://*:" + std::to_string(PORT_BASE + token.id)).c_str());
             assert(rc == 0);
@@ -131,11 +131,11 @@ int main(int argc, char** argv)
             child_id = token.id;
             node_token_t* token_ping = new node_token_t({ping, child_id, child_id});
             node_token_t reply_ping({fail, child_id, child_id});
-            if (zmq_std::send_recieve_wait(token_ping, reply_ping, node_socket) and reply_ping.action == success) {
+            
+			if (zmq_std::send_recieve_wait(token_ping, reply_ping, node_socket) and reply_ping.action == success) {
                 reply->action = success;
             }
-        }
-        else if (token.action == create) {
+        } else if (token.action == create) {
             if (token.parent_id == node_id) {
                 if (has_child) {
                     rc = zmq_close(node_socket);
@@ -143,6 +143,7 @@ int main(int argc, char** argv)
                     rc = zmq_ctx_term(node_context);
                     assert(rc == 0);
                 }
+
                 zmq_std::init_pair_socket(node_context, node_socket);
                 rc = zmq_bind(node_socket, ("tcp://*:" + std::to_string(PORT_BASE + token.id)).c_str());
                 assert(rc == 0);
@@ -152,33 +153,34 @@ int main(int argc, char** argv)
                     rc = execl(NODE_EXECUTABLE_NAME, NODE_EXECUTABLE_NAME, std::to_string(token.id).c_str(), NULL);
                     assert(rc != -1);
                     return 0;
-                }
-                else {
+                } else {
                     bool ok = true;
                     node_token_t reply_info({fail, token.id, token.id});
                     ok = zmq_std::recieve_msg_wait(reply_info, node_socket);
+
                     if (reply_info.action != fail) {
                         reply->id = reply_info.id;
                         reply->parent_id = reply_info.parent_id;
                     }
+
                     if (has_child) {
                         node_token_t* token_bind = new node_token_t({bind, token.id, child_id});
                         node_token_t reply_bind({fail, token.id, token.id});
                         ok = zmq_std::send_recieve_wait(token_bind, reply_bind, node_socket);
                         ok = ok and (reply_bind.action == success);
                     }
-                    if (ok) {
-                        /* We should check if child has connected to this node */
+
+                    if (ok) {  // Специальное сообщение для родителейподключился ли дочерний элем к узлу
                         node_token_t* token_ping = new node_token_t({ping, token.id, token.id});
                         node_token_t reply_ping({fail, token.id, token.id});
                         ok = zmq_std::send_recieve_wait(token_ping, reply_ping, node_socket);
                         ok = ok and (reply_ping.action == success);
+
                         if (ok) {
                             reply->action = success;
                             child_id = token.id;
                             has_child = true;
-                        }
-                        else {
+                        } else {
                             rc = zmq_close(node_socket);
                             assert(rc == 0);
                             rc = zmq_ctx_term(node_context);
@@ -186,37 +188,36 @@ int main(int argc, char** argv)
                         }
                     }
                 }
-            }
-            else if (has_child) {
+            } else if (has_child) {
                 node_token_t* token_down = new node_token_t(token);
                 node_token_t reply_down(token);
                 reply_down.action = fail;
+
                 if (zmq_std::send_recieve_wait(token_down, reply_down, node_socket) and reply_down.action == success) {
                     *reply = reply_down;
                 }
             }
-        }
-        else if (token.action == ping) {
+        } else if (token.action == ping) {
             if (token.id == node_id) {
                 reply->action = success;
-            }
-            else if (has_child) {
+            } else if (has_child) {
                 node_token_t* token_down = new node_token_t(token);
                 node_token_t reply_down(token);
                 reply_down.action = fail;
+
                 if (zmq_std::send_recieve_wait(token_down, reply_down, node_socket) and reply_down.action == success) {
                     *reply = reply_down;
                 }
             }
-        }
-        else if (token.action == destroy) {
+        } else if (token.action == destroy) {
             if (has_child) {
                 if (token.id == child_id) {
                     bool ok = true;
                     node_token_t* token_down = new node_token_t({destroy, node_id, child_id});
                     node_token_t reply_down({fail, child_id, child_id});
                     ok = zmq_std::send_recieve_wait(token_down, reply_down, node_socket);
-                    /* We should get special reply from child */
+                    // Мы должны получить специальный ответ от дочернего
+
                     if (reply_down.action == destroy and reply_down.parent_id == child_id) {
                         rc = zmq_close(node_socket);
                         assert(rc == 0);
@@ -224,8 +225,7 @@ int main(int argc, char** argv)
                         assert(rc == 0);
                         has_child = false;
                         child_id = -1;
-                    }
-                    else if (reply_down.action == bind and reply_down.parent_id == node_id) {
+                    } else if (reply_down.action == bind and reply_down.parent_id == node_id) {
                         rc = zmq_close(node_socket);
                         assert(rc == 0);
                         rc = zmq_ctx_term(node_context);
@@ -236,15 +236,16 @@ int main(int argc, char** argv)
                         child_id = reply_down.id;
                         node_token_t* token_ping = new node_token_t({ping, child_id, child_id});
                         node_token_t reply_ping({fail, child_id, child_id});
+
                         if (zmq_std::send_recieve_wait(token_ping, reply_ping, node_socket) and reply_ping.action == success) {
                             ok = true;
                         }
                     }
+
                     if (ok) {
                         reply->action = success;
                     }
-                }
-                else if (token.id == node_id) {
+                } else if (token.id == node_id) {
                     rc = zmq_close(node_socket);
                     assert(rc == 0);
                     rc = zmq_ctx_term(node_context);
@@ -254,74 +255,77 @@ int main(int argc, char** argv)
                     reply->id = child_id;
                     reply->parent_id = token.parent_id;
                     awake = false;
-                }
-                else {
+                } else {
                     node_token_t* token_down = new node_token_t(token);
                     node_token_t reply_down(token);
                     reply_down.action = fail;
+
                     if (zmq_std::send_recieve_wait(token_down, reply_down, node_socket) and reply_down.action == success) {
                         *reply = reply_down;
                     }
                 }
-            }
-            else if (token.id == node_id) {
-                /* Special message to parent */
+            } else if (token.id == node_id) {
+                //  Специальное сообщение для родителя
                 reply->action = destroy;
                 reply->parent_id = node_id;
                 reply->id = node_id;
                 awake = false;
             }
-        }
-        else if (token.action == exec) {
+        } else if (token.action == exec) {
             if (token.id == node_id) {
                 char c = token.parent_id;
+
                 if (c == SENTINEL) {
                     if (flag_sentinel) {
                         std::swap(text, pattern);
-                    }
-                    else {
+                    } else {
                         pthread_mutex_lock(&mutex);
+
                         if (calc_queue.empty()) {
                             pthread_cond_signal(&cond);
                         }
+
                         calc_queue.push({pattern, text});
                         pthread_mutex_unlock(&mutex);
                         text.clear();
                         pattern.clear();
                     }
                     flag_sentinel = flag_sentinel ^ 1;
-                }
-                else {
+                } else {
                     text = text + c;
                 }
                 reply->action = success;
-            }
-            else if (has_child) {
+            } else if (has_child) {
                 node_token_t* token_down = new node_token_t(token);
                 node_token_t reply_down(token);
                 reply_down.action = fail;
-                if (zmq_std::send_recieve_wait(token_down, reply_down, node_socket) and reply_down.action == success) {
+                
+				if (zmq_std::send_recieve_wait(token_down, reply_down, node_socket) and reply_down.action == success) {
                     *reply = reply_down;
                 }
             }
         }
         zmq_std::send_msg_dontwait(reply, node_parent_socket);
     }
+
     if (has_child) {
         rc = zmq_close(node_socket);
         assert(rc == 0);
         rc = zmq_ctx_term(node_context);
         assert(rc == 0);
     }
+
     rc = zmq_close(node_parent_socket);
     assert(rc == 0);
     rc = zmq_ctx_term(node_parent_context);
     assert(rc == 0);
 
     pthread_mutex_lock(&mutex);
+
     if (calc_queue.empty()) {
         pthread_cond_signal(&cond);
     }
+	
     calc_queue.push({SENTINEL_STR, SENTINEL_STR});
     pthread_mutex_unlock(&mutex);
 
