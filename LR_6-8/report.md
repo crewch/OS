@@ -16,7 +16,52 @@
 ## Тесты
 
 ```txt
-
+[crewch@pc src]$ ./control
+create 1 -1
+OK: 2534
+create 2 -1
+OK: 2555
+create 3 -1
+OK: 2575
+create 4 -1
+OK: 2582
+create 5 -1
+OK: 2588
+exec 1 ac acacsssssac
+OK
+exec 2 af afafafaffafa
+OK
+exec 3
+123 123123123
+OK
+ping 1
+OK: 1
+ping 2
+OK: 1
+ping 3
+OK: 1
+ping 4
+OK: 1
+ping 5
+OK: 1
+back 1
+OK: 2534 : 0, 2, 9
+back 2
+OK: 2555 : 0, 2, 4, 6, 9
+back 3
+OK: 2575 : 0, 3, 6
+back 4
+Error: No calculations to back
+remove 5
+OK
+remove 4
+OK
+remove 3
+OK
+remove 2
+OK
+remove 1
+OK
 ```
 
 ## Методы и алгоритмы решения
