@@ -53,6 +53,10 @@ int main(int argc, char** argv)
     node_id = std::stoll(std::string(argv[1]));
 
     void* node_parent_context = zmq_ctx_new();
+    /*
+    Функция zmq_ctx_new() создает новый контекст 0MQ.
+    Функция zmq_ctx_new() в случае успеха вернет непрозрачный дескриптор для вновь созданного контекста.
+    */
     void* node_parent_socket = zmq_socket(node_parent_context, ZMQ_PAIR);
     rc = zmq_connect(node_parent_socket, ("tcp://localhost:" + std::to_string(PORT_BASE + node_id)).c_str());
     assert(rc == 0);

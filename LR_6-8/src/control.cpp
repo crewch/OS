@@ -24,6 +24,7 @@ int main()
                 void* new_context = NULL;
                 void* new_socket = NULL;
                 zmq_std::init_pair_socket(new_context, new_socket);
+                // Функция zmq_bind() привязывает сокет к локальной конечной точке, а затем принимает входящие соединения на этой конечной точке.
                 rc = zmq_bind(new_socket, ("tcp://*:" + std::to_string(PORT_BASE + id)).c_str());
                 assert(rc == 0);
 

@@ -33,11 +33,15 @@ namespace zmq_std {
     void init_pair_socket(void*& context, void*& socket)
     {
         int rc;
-        context = zmq_ctx_new();
+        context = zmq_ctx_new(); // В zmq_ctx_new() функция создает новый 0MQ контекст. В zmq_ctx_new() функция должна вернуть непрозрачный дескриптор для вновь созданного контекст
         socket = zmq_socket(context, ZMQ_PAIR);
-        rc = zmq_setsockopt(socket, ZMQ_RCVTIMEO, &WAIT_TIME, sizeof(int));
+        /*
+        Функция zmq_socket() должна создать сокет 0MQ в указанном контексте и вернуть непрозрачный дескриптор вновь созданному сокету.
+        Аргумент type указывает тип сокета, который определяет семантику связи через сокет.
+        */
+        rc = zmq_setsockopt(socket, ZMQ_RCVTIMEO, &WAIT_TIME, sizeof(int)); // установить параметры сокета 0MQ
         assert(rc == 0);
-        rc = zmq_setsockopt(socket, ZMQ_SNDTIMEO, &WAIT_TIME, sizeof(int));
+        rc = zmq_setsockopt(socket, ZMQ_SNDTIMEO, &WAIT_TIME, sizeof(int)); // установить параметры сокета 0MQ
         assert(rc == 0);
     }
 
@@ -49,7 +53,7 @@ namespace zmq_std {
         zmq_msg_init(&reply);
         rc = zmq_msg_recv(&reply, socket, 0);
         assert(rc == sizeof(T));
-        reply_data = *(T*)zmq_msg_data(&reply);
+        reply_data = *(T*)zmq_msg_data(&reply); // Функция zmq_msg_data() должна возвращать указатель на содержимое сообщения объекта message, на который ссылается msg.
         rc = zmq_msg_close(&reply);
         assert(rc == 0);
     }
